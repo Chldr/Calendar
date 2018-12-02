@@ -1,0 +1,27 @@
+import React, { Component } from 'react';
+
+
+class CurrentDate extends Component {
+    
+    render() {
+        const { date } = this.props;
+        return (
+            
+            <div className="Date">
+                <div className="Date__year-month">
+                    {date.format('YYYY')}.{date.format('MM')}
+                </div>
+                <div className="Date__date">
+                    {date.format('DD')}
+                </div>
+                <div className="Date__day">
+                    <div className="Date__day__text">
+                        <span>{date.format('dddd')}</span>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
+
+export default CurrentDate;

@@ -1,25 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Header from './components/header';
+// import CurrentDate from './components/current_date';
+// import Theme from './components/theme';
+// import Info from './components/info';
+import Footer from './components/footer';
+import moment from 'moment';
+import Daily from './components/daily';
+import Lunar from './components/lunar';
 import './App.css';
 
 class App extends Component {
+  state = {
+    date: moment(),
+  }
+
+  changeDate = (date) => {
+    this.setState({date});
+  }
+
   render() {
+    //const now = moment();
+    
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Header changeDate={this.changeDate} />
+        {this.state.date ? 
+          (<Daily date={this.state.date} />) : 
+          (<Lunar changeDate={this.changeDate} />)
+        }
+        <Footer />
       </div>
     );
   }
