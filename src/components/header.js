@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Logo from '../assets/images/calendar_icon.png';
+import Menu from '../assets/images/menu.png';
 
 
 class Header extends Component {
@@ -11,11 +12,18 @@ class Header extends Component {
         return (
             <div>
                 <div className="Header">
-                    <img className="Logo" src={Logo} alt="logo" />
-                      
-                    <button onClick={this.onCalendarClick}>  
+                    <div className="Left">
+                        <img className="Logo" src={Logo} alt="logo" />
                         <span className="Name">Calendar</span>
-                    </button>
+
+                    </div>
+                    <div className="Right">
+                        <button onClick={this.onCalendarClick}>
+                            <img className="Menu" src={Menu} alt="menu" />
+                        </button>
+
+                     </div>
+
                 </div>
                 <hr />
             </div>

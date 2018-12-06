@@ -31,13 +31,13 @@ class Lunar extends Component {
         for (let i = 1;i <= daysInMonth;i++) {
             date.date(i);
             week[date.format('ddd')] = date.clone();
-           
+
             if (date.format('ddd') === 'Sun') {
                 matrix.push(Object.assign({}, week));
                 week = Object.assign({}, weekClone);
             }
         }
-        
+
         return matrix;
     }
 
@@ -45,16 +45,25 @@ class Lunar extends Component {
         const getDate = (date) => {
             return date ? date.get('date') : null;
         }
+
         return this.state.matrix.map((week, index) => {
+            const weekDay = Object.keys(week).map((day, key) => {
+                const classList = [week[day] ? "Day" : "Empty-day"];
+                if (week[day]) {
+                  moment().isSame(week[day].format('YYYY-MM-DD'), 'day') && classList.push("Current-date");
+                }
+                return (
+                    <span
+                        key={key}
+                        onClick={() => this.props.changeDate(week[day])}
+                        className={classList.join(" ")}>
+                        {getDate(week[day])}
+                    </span>
+                )
+            });
             return(
-                <div key={index} className="Days-in-weeks">
-                    <span onClick={() => this.props.changeDate(week.Mon)} className={week.Mon ? "Day" : "Empty-day"}>{getDate(week.Mon)}</span>
-                    <span onClick={() => this.props.changeDate(week.Tue)} className={week.Tue ? "Day" : "Empty-day"}>{getDate(week.Tue)}</span>
-                    <span onClick={() => this.props.changeDate(week.Wed)} className={week.Wed ? "Day" : "Empty-day"}>{getDate(week.Wed)}</span>
-                    <span onClick={() => this.props.changeDate(week.Thu)} className={week.Thu ? "Day" : "Empty-day"}>{getDate(week.Thu)}</span>
-                    <span onClick={() => this.props.changeDate(week.Fri)} className={week.Fri ? "Day" : "Empty-day"}>{getDate(week.Fri)}</span>
-                    <span onClick={() => this.props.changeDate(week.Sat)} className={week.Sat ? "Day" : "Empty-day"}>{getDate(week.Sat)}</span>
-                    <span onClick={() => this.props.changeDate(week.Sun)} className={week.Sun ? "Day" : "Empty-day"}>{getDate(week.Sun)}</span>
+                <div key={index} className="Days-in-weeks Margin-change">
+                    {weekDay}
                 </div>
             );
         });
@@ -67,9 +76,9 @@ class Lunar extends Component {
             <div className="Monthly-calendar">
                 <h4 className="Year">{ year }</h4>
                 <h3 className="Month">{ month }</h3>
-                <div className="Weeks">
+                <div className="Weeks Margin-change">
                     <span className="Mon">
-                        MON 
+                        MON
                     </span>
                     <span className="Tue">
                         TUE
@@ -92,7 +101,7 @@ class Lunar extends Component {
                 </div>
                 <div className="Weeks-in-month">
                     {this.renderMatrix()}
-                </div>    
+                </div>
             </div>
         );
     }
