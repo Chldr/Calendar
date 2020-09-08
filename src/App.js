@@ -20,6 +20,7 @@ class App extends Component {
 
   render() {
     //const now = moment();
+    console.log(this.state.date)
     
     return (
       <div className="App">

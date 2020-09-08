@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import moment from 'moment';
 
 
 class HistoryToday extends Component {
@@ -18,6 +19,7 @@ class HistoryToday extends Component {
     async getInfo(date) {
         const month = date.format("MM");
         const dateTime = date.format("DD");
+
         const result = await axios.get(`https://baike.baidu.com/cms/home/eventsOnHistory/${month}.json`);
         const collection = result.data[month][`${month}${dateTime}`];
         this.setState({
@@ -30,14 +32,18 @@ class HistoryToday extends Component {
 
 
     render() {
+        const month = this.props.date.format("MM");
+        const dateTime = this.props.date.format("DD");
 
         return  (
             <div className="Info__text One">
                 <h3 className="Info__text_title">历史上的今天</h3>
                 <div className="content">
-                    <p>年代：{this.state.year}</p>
-                    <p dangerouslySetInnerHTML={{__html:this.state.title}}></p>
-                    <p dangerouslySetInnerHTML={{__html:this.state.content}}></p>
+                    <>
+                        <p>年代：{this.state.year}</p>
+                        <p dangerouslySetInnerHTML={{__html:this.state.title}}></p>
+                        <p dangerouslySetInnerHTML={{__html:this.state.content}}></p>
+                    </>
                 </div>
             </div>
         );

@@ -7,7 +7,7 @@ class Info extends Component {
         return(
             <div className="Info">
                 <HistoryToday date={this.props.date} />
-                <Music />    
+                <Music date={this.props.date} />    
             </div>
         );
     }

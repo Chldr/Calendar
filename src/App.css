@@ -392,7 +392,13 @@ small {
   background-color: #6666FF;
   cursor: pointer;
 }
-
-
+.birthday-complement {
+  color: #CE850D;
+  margin-top: 12px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 
