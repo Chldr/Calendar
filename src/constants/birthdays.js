@@ -1,6 +1,6 @@
 import LxyImage from '../assets/images/lxy-birth.png'
 import HxImage from '../assets/images/hx-birth.png'
-
+import BaoziImage from '../assets/images/baozi-birthday.png'
 export const BIRTHDAY_MAP = [
     {
         month: 9,
@@ -20,4 +20,10 @@ export const BIRTHDAY_MAP = [
         name: '钊钊',
         avatars: ''
     },
+    {
+        month: 9,
+        date: 18,
+        name: '亲爱滴包子',
+        avatar: BaoziImage
+    }
 ]
